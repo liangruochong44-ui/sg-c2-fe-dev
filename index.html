@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>若冲博客 - AI 与游戏开发</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="home">
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <div class="avatar">冲</div>
+        <span>若冲</span>
+      </a>
+      <button class="menu-toggle" aria-label="菜单">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">首页</a></li>
+        <li><a href="blog.html">文章</a></li>
+        <li><a href="about.html">关于</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+      <section class="hero">
+        <div class="hero-avatar">冲</div>
+        <h1>你好，我是梁若冲</h1>
+        <p class="hero-subtitle">热爱 AI 与游戏开发的程序员</p>
+        <div class="hero-tags">
+          <span class="tag">AI/机器学习</span>
+          <span class="tag">游戏开发</span>
+          <span class="tag">全栈工程师</span>
+        </div>
+      </section>
+
+      <section class="fade-in delay-1">
+        <h2 class="section-title">最新文章</h2>
+        <div class="articles-grid" id="latest-articles">
+        </div>
+        <div class="view-more">
+          <a href="blog.html" class="btn">查看更多文章 →</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 若冲博客 · 用心写好每一篇文章</p>
+    </div>
+  </footer>
+
+  <div class="back-to-top" aria-label="返回顶部">↑</div>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const latestContainer = document.getElementById('latest-articles');
+      if (latestContainer) {
+        const latest = [
+          {
+            id: 1,
+            title: "探索 AI 辅助编程的最佳实践",
+            excerpt: "在 AI 时代，如何高效地利用 AI 工具提升编程效率，同时保持代码质量和学习成长？本文将分享一些实用的技巧和经验。",
+            category: "AI",
+            date: "2026-02-20"
+          },
+          {
+            id: 2,
+            title: "游戏开发中的物理引擎选择",
+            excerpt: "从 Unity 的 PhysX 到 Godot 的内置引擎，如何根据项目需求选择合适的物理解决方案？",
+            category: "游戏开发",
+            date: "2026-02-15"
+          },
+          {
+            id: 3,
+            title: "从零开始构建个人博客",
+            excerpt: "记录我搭建这个博客的过程，包括技术选型、设计考量以及遇到的问题和解决方案。",
+            category: "前端",
+            date: "2026-02-10"
+          }
+        ];
+        
+        latestContainer.innerHTML = latest.map(article => `
+          <a href="article.html?id=${article.id}" class="article-card">
+            <div class="article-meta">
+              <span class="article-category">${article.category}</span>
+              <span>${new Date(article.date).toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            </div>
+            <h3 class="article-title">${article.title}</h3>
+            <p class="article-excerpt">${article.excerpt}</p>
+          </a>
+        `).join('');
+      }
+    });
+  </script>
+</body>
+</html>

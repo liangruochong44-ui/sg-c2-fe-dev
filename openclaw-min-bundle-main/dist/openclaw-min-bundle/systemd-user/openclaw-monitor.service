@@ -1,0 +1,6 @@
+[Unit]
+Description=OpenClaw Gateway Monitor
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/openclaw-monitor.sh
