@@ -59,7 +59,7 @@ Gateway → Client: res:agent (ack) + event:agent (streaming) + res:agent (final
 | `browser` | 浏览器自动化 |
 | `canvas` | 驱动 Node Canvas |
 | `nodes` | 设备控制 (camera/screen/location/run) |
-| `web_search` | Brave 搜索 |
+| `web_search` | MiniMax 搜索 (coding-plan) |
 | `web_fetch` | URL 内容获取 |
 | `message` | 跨平台发消息 |
 | `cron` | 定时任务 |
@@ -86,7 +86,7 @@ Gateway → Client: res:agent (ack) + event:agent (streaming) + res:agent (final
 - `group:fs` → read, write, edit, apply_patch
 - `group:sessions` → sessions_list, sessions_history, sessions_send, sessions_spawn, session_status
 - `group:memory` → memory_search, memory_get
-- `group:web` → web_search, web_fetch
+- `group:web` → **web_search (MiniMax)**, web_fetch
 - `group:ui` → browser, canvas
 - `group:automation` → cron, gateway
 - `group:messaging` → message

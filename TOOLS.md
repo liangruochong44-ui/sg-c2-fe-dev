@@ -37,6 +37,12 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
+### 搜索工具
+
+- **默认搜索**: MiniMax coding-plan API (via minimax-tools-cli.py)
+- **CLI 路径**: `~/.openclaw/workspace/config/minimax-tools-cli.py`
+- **使用方法**: `python minimax-tools-cli.py search "关键词"`
+
 ### Gitee
 
 - **Token**: af382479a92193a8a4f73c5aa71941bd (ruochong-liang)

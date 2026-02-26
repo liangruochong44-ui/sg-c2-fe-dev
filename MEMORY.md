@@ -11,6 +11,7 @@
 - **Gateway**: 正常运行 (systemd)
 - **模型**: minimax/MiniMax-M2.5-highspeed (40k context)
 - **MCP**: chrome-devtools 已配置 (26个工具)
+- **搜索**: MiniMax coding-plan API (默认)
 
 ## 待完成
 
