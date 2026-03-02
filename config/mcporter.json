@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "minimax": {
+      "command": "python3",
+      "args": [
+        "-c",
+        "import sys; sys.path.insert(0, '/Users/lrc/.openclaw/workspace/minimax-mcp-test/mcp_src'); from minimax_mcp.server import main; main()"
+      ],
+      "env": {
+        "MINIMAX_API_KEY": "sk-cp-7ZwpqI_uoIuzWKIMfDWMSBxSQM0kgxRWbZgbvfDqVYIHCiIxosakrdhGwVrs7rPEJvEf9ZSEib92AEeyh3t07Rl1xvCMhKSzpMvFHaZP49YC5I_8KaAwo1s",
+        "MINIMAX_API_HOST": "https://api.minimaxi.com"
+      }
+    }
+  },
+  "imports": [],
+  "keepAlive": true
+}

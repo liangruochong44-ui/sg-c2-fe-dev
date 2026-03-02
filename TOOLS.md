@@ -37,22 +37,50 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
-### 搜索工具
+## ⚠️ MCP 管理 - mcporter（重要！）
 
-- **默认搜索**: web_search
-- **CLI 路径**: `~/.openclaw/workspace/config/minimax-tools-cli.py`
-- **使用方法**: `python minimax-tools-cli.py search "关键词"`
-- **重要**: web_search 搜到重要内容后，必须用 web_fetch 深度访问原始页面
+**mcporter 是 OpenClaw 使用 MCP 的唯一途径**
+
+### 配置文件位置
+- **项目配置**: `~/.openclaw/workspace/config/mcporter.json`
+- **系统配置**: `~/.mcporter/mcporter.json`（可选）
+
+### 核心命令
+
+| 命令 | 用途 |
+|------|------|
+| `mcporter list` | 列出所有 MCP 服务器 |
+| `mcporter list <name> --schema` | 查看服务器工具文档 |
+| `mcporter call <server.tool> key=value` | 调用工具 |
+| `mcporter config list` | 查看配置来源 |
+| `mcporter daemon start` | 启动守护进程（仅 HTTP 传输需要） |
+
+### 当前配置的 MCP 服务器
+
+#### chrome-devtools（浏览器自动化）
+- **状态**: 待配置
+- **用途**: 浏览器自动化、性能分析、网络调试
+
+### 注意事项
+
+- **stdio 传输**: 无需 daemon，每次调用自动启动
+- **HTTP 传输**: 需要 `mcporter daemon start` 保持常驻
+
+---
+
+### minimax MCP（搜索 + 图片理解）
+- **状态**: ✅ 已配置
+- **工具**: `web_search`, `understand_image`
+- **调用方式**（必须在 workspace 目录执行）:
+  ```bash
+  cd ~/.openclaw/workspace
+  mcporter call minimax.web_search query="关键词"
+  mcporter call minimax.understand_image prompt="描述" image_source="图片路径"
+  ```
 
 ### Gitee
 
 - **Token**: af382479a92193a8a4f73c5aa71941bd (ruochong-liang)
-
-### MCP Servers
-
-- **chrome-devtools-mcp**: Chrome 浏览器自动化 (需要独立配置)
-  - 状态: 待配置 (WSL2 环境 Chrome 路径问题)
-  - 用途: 浏览器自动化、性能分析、网络调试
 
 ### Chrome DevTools MCP 配置状态
 
@@ -67,4 +95,3 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
   }
 }
 ```
-

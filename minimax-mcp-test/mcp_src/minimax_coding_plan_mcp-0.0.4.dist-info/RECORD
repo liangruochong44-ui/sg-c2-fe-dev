@@ -1,0 +1,13 @@
+minimax_coding_plan_mcp-0.0.4.dist-info/licenses/LICENSE,sha256=qROMAfPCJkGsj4_i8-x13gtKBJT_gejaQ7PMIJGTWsM,1064
+minimax_mcp/__init__.py,sha256=pEcwAGPFEDq_H4ki4PVWccNiyL1z2A1FJfdaIDGBVO0,69
+minimax_mcp/__main__.py,sha256=kJAKkOTXlgaWRVG8GdQ9KGMhgUdFbyAtm6_gayTxeEY,2971
+minimax_mcp/client.py,sha256=CNQRaiDoplLOueK29YsefN_kZLFLr_BZd-CLSwW2a-M,3675
+minimax_mcp/const.py,sha256=OTjQYgbhnxd9M2g88mEtcmW1W-1XAv34UcUVmj4QJEM,141
+minimax_mcp/exceptions.py,sha256=f02y8FAKo7WS9jqhQD1_hFkPHWFX4-j5nEvZ_rBmFCU,547
+minimax_mcp/server.py,sha256=Heoo1rpO5GulFtfu7dMlpaECQQu3q7B0_EsKimZXGGQ,5970
+minimax_mcp/utils.py,sha256=4WJ9g-82JuKLCJI8lW--gapOpxq7fFRfNyZB65YWYnY,3110
+minimax_coding_plan_mcp-0.0.4.dist-info/METADATA,sha256=kNe0q3hcH4jrn1ZcO6lWbdWM3ulvGYDbCm0fkXF2RRk,12417
+minimax_coding_plan_mcp-0.0.4.dist-info/WHEEL,sha256=_zCd3N1l69ArxyTb8rzEoP9TpbYXkqRFSNOD5OuxnTs,91
+minimax_coding_plan_mcp-0.0.4.dist-info/entry_points.txt,sha256=nBQn7kfqXxlmJCWcPmnLA9nyy-wGLUuI0p4daZ6_OHg,68
+minimax_coding_plan_mcp-0.0.4.dist-info/top_level.txt,sha256=PQ7pnbym7cuF8XXvQ-yLu2czj9EDuAhkTbbwtoeEKsA,12
+minimax_coding_plan_mcp-0.0.4.dist-info/RECORD,,

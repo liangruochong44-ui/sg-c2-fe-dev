@@ -1,13 +1,11 @@
 # HEARTBEAT.md
 
-# 8个轮询任务 (每30分钟一次心跳，每次做1-2个)
+## 任务清单 
 
-## 任务清单 (按顺序循环)
+### 1. 进行工作区的git提交
+- 以你的名字进行git的提交
+- 并且整理工作区，将散落的文件整理到文件夹中
 
-### 1. 系统状态检查
-- 检查 Gateway 状态 (`openclaw gateway status`)
-- 检查 Monitor Timer 是否运行
-- 检查是否有错误日志
 
 ### 2. 文档学习
 - 读 OpenClaw docs/ 下的文档
@@ -40,15 +38,3 @@
 
 ---
 
-### 任务7结果 (13:50)
-- 研究 MCP 服务: mcporter
-- 服务器状态:
-  - chrome-devtools: ✅ 26工具正常
-  - minimax: ❌ 离线
-- 状态: ✅ 完成
-
-### 任务1结果 (12:55)
-- Gateway: 运行中 (pid 229322)
-- 问题: CLI 和 service 配置路径不一致导致 token mismatch
-- 建议: 运行 `openclaw doctor --repair`
-- 状态: ✅ 已记录
