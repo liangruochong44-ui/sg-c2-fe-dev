@@ -1,0 +1,37 @@
+{
+  "backoff_reason": "loop_gating_pending_solidify",
+  "signals": [
+    "log_error",
+    "errsig:**ASSISTANT**: 找到问题了！日志显示 cron job 执行了，但发送失败： ``` Error: main cron jobs require payload.kind=\"systemEvent\" ``` **问题原因：** 1. 定时任务的 payload 使用了 `kind: \"agentTurn\"`，但主 cron job 需要 `kind: \"systemEvent\"` 2. 消息从未成功发送到飞书 (`lastDeliveryStatus: \"not-delivered\"`) 让我修复这个",
+    "perf_bottleneck",
+    "high_tool_usage:exec",
+    "repeated_tool_usage:exec"
+  ],
+  "selected_gene_id": "gene_gep_repair_from_errors",
+  "mutation": {
+    "type": "Mutation",
+    "id": "mut_1772094208873",
+    "category": "repair",
+    "trigger_signals": [
+      "log_error",
+      "errsig:**ASSISTANT**: 找到问题了！日志显示 cron job 执行了，但发送失败： ``` Error: main cron jobs require payload.kind=\"systemEvent\" ``` **问题原因：** 1. 定时任务的 payload 使用了 `kind: \"agentTurn\"`，但主 cron job 需要 `kind: \"systemEvent\"` 2. 消息从未成功发送到飞书 (`lastDeliveryStatus: \"not-delivered\"`) 让我修复这个",
+      "perf_bottleneck",
+      "high_tool_usage:exec",
+      "repeated_tool_usage:exec"
+    ],
+    "target": "gene:gene_gep_repair_from_errors",
+    "expected_effect": "reduce runtime errors, increase stability, and lower failure rate",
+    "risk_level": "low"
+  },
+  "personality_state": {
+    "type": "PersonalityState",
+    "rigor": 0.7,
+    "creativity": 0.35,
+    "verbosity": 0.25,
+    "risk_tolerance": 0.4,
+    "obedience": 0.85
+  },
+  "run_id": "run_1772094208874",
+  "created_at": "2026-02-26T08:51:37.078Z",
+  "ttl_ms": 3600000
+}

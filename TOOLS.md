@@ -39,9 +39,10 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ### 搜索工具
 
-- **默认搜索**: MiniMax coding-plan API (via minimax-tools-cli.py)
+- **默认搜索**: web_search
 - **CLI 路径**: `~/.openclaw/workspace/config/minimax-tools-cli.py`
 - **使用方法**: `python minimax-tools-cli.py search "关键词"`
+- **重要**: web_search 搜到重要内容后，必须用 web_fetch 深度访问原始页面
 
 ### Gitee
 
@@ -67,4 +68,3 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 }
 ```
 
-注意: WSL2 环境下需要确保 Windows Chrome 可访问，或在本地运行 Chrome。

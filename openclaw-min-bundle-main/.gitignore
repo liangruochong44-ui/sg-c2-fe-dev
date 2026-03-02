@@ -1,5 +1,0 @@
-# ignore local secrets
-.env
-gateway.env
-*.log
-/.DS_Store

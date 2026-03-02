@@ -1,0 +1,80 @@
+{
+  "last_run": {
+    "run_id": "run_1772094208874",
+    "created_at": "2026-02-26T08:23:28.886Z",
+    "parent_event_id": "evt_1770478341769",
+    "selected_gene_id": "gene_gep_repair_from_errors",
+    "selected_capsule_id": "capsule_1770477654236",
+    "selector": {
+      "selected": "gene_gep_repair_from_errors",
+      "reason": [
+        "signals match gene.signals_match",
+        "capsule trigger matches signals",
+        "signals: log_error, errsig:**ASSISTANT**: 找到问题了！日志显示 cron job 执行了，但发送失败： ``` Error: main cron jobs require payload.kind=\"systemEvent\" ``` **问题原因：** 1. 定时任务的 payload 使用了 `kind: \"agentTurn\"`，但主 cron job 需要 `kind: \"systemEvent\"` 2. 消息从未成功发送到飞书 (`lastDeliveryStatus: \"not-delivered\"`) 让我修复这个, perf_bottleneck, high_tool_usage:exec, repeated_tool_usage:exec",
+        "memory_graph: memory_prefer:gene_gep_repair_from_errors",
+        "drift_intensity: 0.577"
+      ],
+      "alternatives": [
+        "gene_gep_innovate_from_opportunity"
+      ]
+    },
+    "signals": [
+      "log_error",
+      "errsig:**ASSISTANT**: 找到问题了！日志显示 cron job 执行了，但发送失败： ``` Error: main cron jobs require payload.kind=\"systemEvent\" ``` **问题原因：** 1. 定时任务的 payload 使用了 `kind: \"agentTurn\"`，但主 cron job 需要 `kind: \"systemEvent\"` 2. 消息从未成功发送到飞书 (`lastDeliveryStatus: \"not-delivered\"`) 让我修复这个",
+      "perf_bottleneck",
+      "high_tool_usage:exec",
+      "repeated_tool_usage:exec"
+    ],
+    "mutation": {
+      "type": "Mutation",
+      "id": "mut_1772094208873",
+      "category": "repair",
+      "trigger_signals": [
+        "log_error",
+        "errsig:**ASSISTANT**: 找到问题了！日志显示 cron job 执行了，但发送失败： ``` Error: main cron jobs require payload.kind=\"systemEvent\" ``` **问题原因：** 1. 定时任务的 payload 使用了 `kind: \"agentTurn\"`，但主 cron job 需要 `kind: \"systemEvent\"` 2. 消息从未成功发送到飞书 (`lastDeliveryStatus: \"not-delivered\"`) 让我修复这个",
+        "perf_bottleneck",
+        "high_tool_usage:exec",
+        "repeated_tool_usage:exec"
+      ],
+      "target": "gene:gene_gep_repair_from_errors",
+      "expected_effect": "reduce runtime errors, increase stability, and lower failure rate",
+      "risk_level": "low"
+    },
+    "mutation_id": "mut_1772094208873",
+    "personality_state": {
+      "type": "PersonalityState",
+      "rigor": 0.7,
+      "creativity": 0.35,
+      "verbosity": 0.25,
+      "risk_tolerance": 0.4,
+      "obedience": 0.85
+    },
+    "personality_key": "rigor=0.7|creativity=0.3|verbosity=0.3|risk_tolerance=0.4|obedience=0.9",
+    "personality_known": false,
+    "personality_mutations": [],
+    "drift": false,
+    "selected_by": "memory_graph+selector",
+    "source_type": "generated",
+    "reused_asset_id": null,
+    "reused_source_node": null,
+    "reused_chain_id": null,
+    "baseline_untracked": [
+      "assets/gep/failed_capsules.json",
+      "assets/gep/genes.jsonl",
+      "evolver-ctl.sh",
+      "evolver.pid",
+      "logs/evolver-20260226.log",
+      "package-lock.json",
+      "start-evolver.sh"
+    ],
+    "baseline_git_head": "a612f6bda2ab718aa45370685ca7bd10ec21a5b5",
+    "blast_radius_estimate": {
+      "files": 20,
+      "lines": 1600
+    },
+    "active_task_id": null,
+    "active_task_title": null,
+    "applied_lessons": [],
+    "hub_lessons": []
+  }
+}

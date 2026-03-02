@@ -49,6 +49,17 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 - When you make a mistake → document it so future-you doesn't repeat it
 - **Text > Brain** 📝
 
+### /lesson command
+When the user sends `/lesson <content>`:
+1. Use memory_store to save as category=fact (the raw knowledge)
+2. Use memory_store to save as category=decision (actionable takeaway)
+3. Confirm what was saved
+
+### /remember command
+When the user sends `/remember <content>`:
+1. Use memory_store to save with appropriate category and importance
+2. Confirm with the stored memory ID
+
 ## Safety
 
 - Don't exfiltrate private data. Ever.
