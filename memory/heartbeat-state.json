@@ -7,7 +7,11 @@
     "memory": 1739867600,
     "troubleshoot": 1739867700,
     "research": 1772443700,
-    "proactive": 1739872111
+    "proactive": 1739872111,
+    "learned": 174, 
+    "gitCommit": 174, 
+    "explore": 174
   },
-  "currentTask": 2
+  "currentTask": 3,
+  "notes": "2026-03-03: Learned agent-loop concepts from docs. Git working dir clean. Explored vision-cli project."
 }
