@@ -1,0 +1,43 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: :9090
+
+proxies:
+  # 1. 机场节点 (底层隧道)
+  - name: "魔法"
+    type: vmess
+    server: knyr-a.psakt.net
+    port: 20828
+    uuid: 79816386-cfed-4a75-9563-49215ee1e9e4
+    alterId: 0
+    cipher: auto
+    udp: true
+    network: ws
+    ws-opts:
+      path: /
+      headers:
+        Host: cdn.baidu.com
+
+  # 2. 静态住宅代理 (HTTP)
+  - name: "静态住宅代理"
+    type: http
+    server: 89.47.99.38
+    port: 12323
+    username: 14a7b571afe19
+    password: 7726e4283a
+    dialer-proxy: "魔法"
+
+proxy-groups:
+  - name: 🚀 全局代理
+    type: select
+    proxies:
+      - 静态住宅代理
+      - 魔法
+      - DIRECT
+
+rules:
+  - GEOIP,LAN,DIRECT,no-resolve
+  - MATCH,🚀 全局代理
