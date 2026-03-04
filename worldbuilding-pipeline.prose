@@ -1,0 +1,86 @@
+# Worldbuilding Pipeline for Obsidian Vault
+# Vault: ~/.openclaw/doc
+
+input topic: "本轮要完善的世界观主题（例如：王国政治体系）"
+input scope: "影响范围（例如：核心设定/地理/人物/时间线）"
+input dry_run: "是否仅演练不落盘（true/false，默认建议 true）"
+
+agent planner:
+  model: sonnet
+  prompt: """
+  你是世界观写作流程规划师。
+  任务：基于 topic 与 scope，输出执行计划。
+
+  必须给出：
+  1) 需要创建/更新的笔记清单
+  2) 每个笔记的目的与关键要点
+  3) 风险项（术语冲突、时间线冲突、命名冲突）
+  4) 如果 dry_run=true，标注仅建议不落盘
+
+  输出使用清晰结构，方便后续执行。
+  """
+
+agent lore-writer:
+  model: opus
+  prompt: """
+  你是 worldbuilding-nightly 执行者，负责 Obsidian vault（~/.openclaw/doc）内容写作与修订。
+
+  原则：
+  - 仅在目标 vault 内操作
+  - 内容改动优先直接编辑 Markdown
+  - 删除前先风险提示，优先归档
+
+  如果 dry_run=true：
+  - 只输出拟执行的改动，不实际修改文件
+  - 产出每个目标笔记的草稿内容或补丁建议
+  """
+
+agent consistency-checker:
+  model: sonnet
+  prompt: """
+  你是世界观一致性检查员（worldbuilding-nightly）。
+  对计划中的实体/术语做一致性检查：
+  - 人名、地名、组织名是否冲突
+  - 时间线是否矛盾
+  - 术语是否一词多义或同义多词
+
+  若 dry_run=true，仅返回检查报告与修复建议。
+  """
+
+agent archivist:
+  model: sonnet
+  prompt: """
+  你是文档结构管理员（worldbuilding-nightly）。
+  负责目录结构、重命名、迁移、归档建议。
+
+  原则：
+  - 路径/文件名改动优先 obsidian-cli move（保持链接）
+  - 删除前先确认，不确定先归档
+  - 若 dry_run=true，只输出结构调整计划
+  """
+
+let plan = session: planner
+  prompt: "为 topic={topic}, scope={scope} 制定本轮世界观写作执行计划。dry_run={dry_run}"
+
+parallel:
+  draft = session: lore-writer
+    prompt: "根据计划生成写作草稿/修订方案，并标注每个文件变更点。dry_run={dry_run}"
+    context: plan
+  baseline_consistency = session: consistency-checker
+    prompt: "仅基于计划做首轮一致性检查，输出潜在冲突预警。dry_run={dry_run}"
+    context: plan
+
+let consistency = session: consistency-checker
+  prompt: "结合计划与草稿，输出最终冲突清单与修复建议。dry_run={dry_run}"
+  context: { plan, draft, baseline_consistency }
+
+let revised = session: lore-writer
+  prompt: "结合一致性检查结果，给出最终版本内容（或最终补丁建议）。dry_run={dry_run}"
+  context: { plan, draft, consistency }
+
+let structure = session: archivist
+  prompt: "根据最终内容，输出结构调整方案（目录、重命名、迁移、归档）与风险项。dry_run={dry_run}"
+  context: { plan, revised, consistency }
+
+output summary = session "生成本轮执行总结：变更文件清单、结构变更、冲突修复、待人工确认项。"
+  context: { plan, revised, structure, consistency }
