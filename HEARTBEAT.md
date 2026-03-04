@@ -57,9 +57,10 @@
   - 热门网站头条（每个网站3-5条，带标题和简介）
   - BlogWatcher 最新文章（标题+链接）
   - 异常/错误（如有）
-- **使用 qqmail-skill 发送邮件给自己**
-- 命令: `python3 ~/.openclaw/skills/qqmail-skill/scripts/mail.py send -f 1090712389@qq.com -p "nkfsfogixreoihjb" -t 1090712389@qq.com -s "[心跳] 2026-XX-XX 日报" -b "报告内容"`
+- **md文档保存到**: `memory/heartbeat-report-YYYY-MM-DD.md`
+- **使用 qqmail-skill 发送邮件给自己（带附件）**
+- 命令: `python3 ~/.openclaw/skills/qqmail-skill/scripts/mail.py send -f 1090712389@qq.com -p "nkfsfogixreoihjb" -t 1090712389@qq.com -s "[心跳] YYYY-MM-DD 日报" -b "日报见附件" -a "memory/heartbeat-report-YYYY-MM-DD.md"`
 - 邮件主题: `[心跳] YYYY-MM-DD 日报`
-- 附件: 如果有图片或更多内容，可以附件形式发送 md 文档
+- 正文: 简要说明"心跳报告见附件"
 
 ---
