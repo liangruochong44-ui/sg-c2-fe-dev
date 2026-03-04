@@ -43,23 +43,26 @@
   10. Hacker News: https://news.ycombinator.com/rss
 - **每网站至少获取5-10条最新头条**，使用 maxChars=15000 获得更多内容
 - 对每个网站优先尝试RSS feed，如果没有RSS再爬取网页
+- **⚠️ 重要：不要直接罗列标题+链接，要提炼成人类易读的一句话资讯！**
 
 ### 6. BlogWatcher 网站监控
 - 执行 `blogwatcher scan` 扫描已配置的网站
 - 执行 `blogwatcher articles -a | head -30` 查看最新文章
-- 如有新文章，提取标题、博客名、URL
+- **提炼成一句话资讯**，不要简单罗列标题
 - 输出到报告
 
 ### 7. 生成报告并发送邮件
-- 报告格式：**人类易读的中文报告**
+- 报告格式：**提炼型中文资讯简报**
+- **核心原则：不罗列链接，只输出有价值的一句话总结**
 - 包含：
-  - 执行概览（所有任务状态）
-  - 热门网站头条（每个网站3-5条，带标题和简介）
-  - BlogWatcher 最新文章（标题+链接）
-  - 异常/错误（如有）
+  - 📊 执行概览（任务状态，一句话总结）
+  - 🔥 今日热门资讯（提炼后的关键信息，每条不超过20字）
+  - 💡 值得关注的趋势/事件（如有）
+  - 📧 邮箱状态（简报）
+  - ⚠️ 异常/错误（如有）
 - **md文档保存到**: `memory/heartbeat-report-YYYY-MM-DD.md`
 - **使用 qqmail-skill 发送邮件给自己（带附件）**
-- 命令: `python3 ~/.openclaw/skills/qqmail-skill/scripts/mail.py send -f 1090712389@qq.com -p "nkfsfogixreoihjb" -t 1090712389@qq.com -s "[心跳] YYYY-MM-DD 日报" -b "日报见附件" -a "memory/heartbeat-report-YYYY-MM-DD.md"`
+- 命令: `python3 ~/.openclaw/skills/qqmail-send/scripts/mail.py send -f 1090712389@qq.com -p "nkfsfogixreoihjb" -t 1090712389@qq.com -s "[心跳] YYYY-MM-DD 日报" -b "日报见附件" -a "memory/heartbeat-report-YYYY-MM-DD.md"`
 - 邮件主题: `[心跳] YYYY-MM-DD 日报`
 - 正文: 简要说明"心跳报告见附件"
 
