@@ -10,6 +10,14 @@
         "MINIMAX_API_KEY": "sk-cp-7ZwpqI_uoIuzWKIMfDWMSBxSQM0kgxRWbZgbvfDqVYIHCiIxosakrdhGwVrs7rPEJvEf9ZSEib92AEeyh3t07Rl1xvCMhKSzpMvFHaZP49YC5I_8KaAwo1s",
         "MINIMAX_API_HOST": "https://api.minimaxi.com"
       }
+    },
+    "chrome-devtools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--headless"
+      ]
     }
   },
   "imports": [],

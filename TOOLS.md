@@ -33,6 +33,12 @@ Things like:
 
 ## Why Separate?
 
+### OpenClaw 重启约定（冲哥指定）
+
+- **优先使用**：`/Users/lrc/.openclaw/start.sh`
+- 原因：当前环境下这是最稳定的重启方式（会先 `pkill -9 openclaw` 再拉起 gateway）。
+
+
 Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
 
 ---

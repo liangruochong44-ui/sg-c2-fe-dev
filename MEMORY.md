@@ -9,8 +9,7 @@
 ## 系统配置
 
 - **Gateway**: 正常运行 (systemd)
-- **模型**: minimax/MiniMax-M2.5-highspeed (200k context)
+- **模型**: minimax或者gpt
 - **MCP**: chrome-devtools 已配置 (26个工具)
-- **搜索**: MiniMax coding-plan API (默认)
 
 
