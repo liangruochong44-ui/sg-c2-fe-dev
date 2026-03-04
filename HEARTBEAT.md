@@ -17,9 +17,8 @@
 
 ### 4. 检查新邮件
 - 使用 qqmail-skill 检查 QQ 邮箱收件箱
-- 命令: `python3 qqmail-skill/scripts/mail.py list -f liangruochong@foxmail.com -n 5`
+- 命令: `python3 ~/.openclaw/skills/qqmail-skill/scripts/mail.py list -f 1090712389@qq.com -p "nkfsfogixreoihjb" -n 5`
 - 如有新邮件，提取发件人、主题发送给用户
-- 授权码: nkfsfogixreoihjb (已记录在 MEMORY.md)
 
 ---
 

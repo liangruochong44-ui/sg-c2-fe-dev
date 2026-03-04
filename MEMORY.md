@@ -16,5 +16,6 @@
 
 - **QQ邮箱**: liangruochong@foxmail.com
 - **授权码**: nkfsfogixreoihjb (每次使用需输入，不存储)
+- **默认使用**: qqmail skill (`~/.openclaw/skills/qqmail-skill/scripts/mail.py`)
 
 
