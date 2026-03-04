@@ -12,4 +12,9 @@
 - **模型**: minimax或者gpt
 - **MCP**: chrome-devtools 已配置 (26个工具)
 
+## 邮箱配置
+
+- **QQ邮箱**: liangruochong@foxmail.com
+- **授权码**: nkfsfogixreoihjb (每次使用需输入，不存储)
+
 

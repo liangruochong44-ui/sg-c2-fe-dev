@@ -1,0 +1,34 @@
+# Himalaya Email Configuration
+
+# 请将 <你的授权码> 替换为你的 QQ 邮箱授权码
+# 获取方式: 邮箱设置 → 账户 → POP3/SMTP服务 → 开启 → 获取授权码
+
+[[accounts]]
+email = "your_email@qq.com"
+display-name = "梁若冲"
+default = true
+
+[accounts.qqmail]
+email = "你的QQ号@qq.com"
+display-name = "梁若冲"
+
+[accounts.qqmail.backend]
+type = "imap"
+host = "imap.qq.com"
+port = 993
+encryption.type = "tls"
+
+[accounts.qqmail.backend.login]
+type = "password"
+# 使用授权码，不是 QQ 密码
+cmd = "echo '你的授权码'"
+
+[accounts.qqmail.message.send]
+backend.type = "smtp"
+backend.host = "smtp.qq.com"
+backend.port = 465
+backend.encryption.type = "tls"
+
+[accounts.qqmail.message.send.backend.login]
+type = "password"
+cmd = "echo '你的授权码'"
