@@ -61,9 +61,9 @@
   - 📧 邮箱状态（简报）
   - ⚠️ 异常/错误（如有）
 - **md文档保存到**: `memory/heartbeat-report-YYYY-MM-DD.md`
-- **使用 qqmail-skill 发送邮件给自己（带附件）**
-- 命令: `python3 ~/.openclaw/skills/qqmail-send/scripts/mail.py send -f 1090712389@qq.com -p "nkfsfogixreoihjb" -t 1090712389@qq.com -s "[心跳] YYYY-MM-DD 日报" -b "日报见附件" -a "memory/heartbeat-report-YYYY-MM-DD.md"`
+- **使用 qqmail-skill 发送邮件给自己（正文形式，不要附件）**
+- 命令: `python3 ~/.openclaw/skills/qqmail-skill/scripts/mail.py send -f 1090712389@qq.com -p "nkfsfogixreoihjb" -t 1090712389@qq.com -s "[心跳] YYYY-MM-DD 日报" -b "完整报告内容"`
 - 邮件主题: `[心跳] YYYY-MM-DD 日报`
-- 正文: 简要说明"心跳报告见附件"
+- 正文: **直接写入完整报告内容，不要使用附件**
 
 ---
