@@ -35,9 +35,46 @@ function Login() {
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
-    // 清除对应字段的错误
+    // 清除对应字段的错误并设置新的验证
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }))
+      const newErrors = { ...errors }
+      delete newErrors[name]
+      setErrors(newErrors)
+    }
+  }
+
+  // 失焦时验证
+  const handleBlur = (e) => {
+    const { name } = e.target
+    const newErrors = { ...errors }
+    
+    if (name === 'username') {
+      if (!formData.username.trim()) {
+        newErrors.username = '用户名不能为空'
+      } else if (formData.username.length < 3) {
+        newErrors.username = '用户名至少3个字符'
+      } else {
+        delete newErrors.username
+      }
+    }
+    
+    if (name === 'password') {
+      if (!formData.password) {
+        newErrors.password = '密码不能为空'
+      } else if (formData.password.length < 6) {
+        newErrors.password = '密码至少6个字符'
+      } else {
+        delete newErrors.password
+      }
+    }
+    
+    setErrors(newErrors)
+  }
+
+  // 清除提交错误
+  const clearSubmitError = () => {
+    if (errors.submit) {
+      setErrors(prev => ({ ...prev, submit: '' }))
     }
   }
 
@@ -110,6 +147,7 @@ function Login() {
               name="username"
               value={formData.username}
               onChange={handleChange}
+              onBlur={handleBlur}
               placeholder="请输入用户名"
               disabled={isLoading}
             />
@@ -124,6 +162,7 @@ function Login() {
               name="password"
               value={formData.password}
               onChange={handleChange}
+              onBlur={handleBlur}
               placeholder="请输入密码"
               disabled={isLoading}
             />
