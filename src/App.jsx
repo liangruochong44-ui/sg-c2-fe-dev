@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Login from './components/Login'
+import Register from './components/Register'
 
 // 简单的受保护路由组件
 function ProtectedRoute({ children }) {
@@ -38,6 +39,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route 
           path="/dashboard" 
           element={

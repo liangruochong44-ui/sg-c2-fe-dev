@@ -10,22 +10,106 @@
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
 }
 
 .login-box {
   background: white;
   padding: 40px;
-  border-radius: 10px;
+  border-radius: 16px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  animation: slideUp 0.4s ease-out;
 }
 
-.login-box h1 {
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-header {
   text-align: center;
   margin-bottom: 30px;
+}
+
+.login-header h1 {
   color: #333;
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.login-header p {
+  color: #666;
+  font-size: 14px;
+}
+
+/* OAuth 按钮样式 */
+.oauth-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.oauth-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.oauth-btn:hover {
+  border-color: #667eea;
+  background: #f8f9ff;
+  transform: translateY(-1px);
+}
+
+.oauth-github:hover {
+  border-color: #333;
+  background: #f5f5f5;
+}
+
+.oauth-google:hover {
+  border-color: #4285F4;
+  background: #f8f9ff;
+}
+
+/* 分割线 */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+  color: #999;
+  font-size: 12px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e0e0e0;
+}
+
+.divider span {
+  padding: 0 16px;
 }
 
 .form-group {
@@ -35,22 +119,30 @@
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #555;
+  color: #333;
+  font-size: 14px;
   font-weight: 500;
+}
+
+.input-wrapper {
+  position: relative;
 }
 
 .form-group input {
   width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
   font-size: 14px;
-  transition: border-color 0.3s;
+  transition: all 0.2s ease;
+  background: #fafafa;
 }
 
 .form-group input:focus {
   outline: none;
   border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .form-group input:disabled {
@@ -62,32 +154,111 @@
   color: #aaa;
 }
 
+/* 密码显示切换按钮 */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 48px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.password-toggle:hover {
+  color: #667eea;
+}
+
+/* 表单选项 */
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #555;
+}
+
+.remember-me input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #667eea;
+  cursor: pointer;
+}
+
+.forgot-password {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.forgot-password:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* 错误提示 */
 .error {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   color: #e74c3c;
   font-size: 12px;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 
 .submit-error {
-  text-align: center;
-  padding: 10px;
-  background-color: #fee;
-  border-radius: 5px;
-  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  color: #dc2626;
+  font-size: 13px;
 }
 
+/* 登录按钮 */
 .login-btn {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
 }
 
 .login-btn:hover:not(:disabled) {
@@ -102,4 +273,148 @@
 .login-btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+/* 加载动画 */
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 注册链接 */
+.register-link {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+  color: #555;
+  font-size: 14px;
+}
+
+.register-link a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.register-link a:hover {
+  color: #764ba2;
+  text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+  .login-box {
+    padding: 30px 24px;
+  }
+
+  .login-header h1 {
+    font-size: 24px;
+  }
+
+  .form-options {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .oauth-buttons {
+    gap: 10px;
+  }
+
+  .oauth-btn {
+    padding: 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-box {
+    padding: 24px 20px;
+  }
+
+  .login-header h1 {
+    font-size: 22px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group input {
+    padding: 12px 14px;
+  }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .login-box {
+    background: #1a1a2e;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .login-header h1 {
+    color: #fff;
+  }
+
+  .login-header p {
+    color: #aaa;
+  }
+
+  .oauth-btn {
+    background: #252540;
+    border-color: #3a3a5c;
+  }
+
+  .oauth-btn:hover {
+    background: #2a2a4a;
+  }
+
+  .divider::before,
+  .divider::after {
+    background: #3a3a5c;
+  }
+
+  .form-group label {
+    color: #ddd;
+  }
+
+  .form-group input {
+    background: #252540;
+    border-color: #3a3a5c;
+    color: #fff;
+  }
+
+  .form-group input:focus {
+    background: #1a1a2e;
+    border-color: #667eea;
+  }
+
+  .form-group input::placeholder {
+    color: #666;
+  }
+
+  .remember-me {
+    color: #aaa;
+  }
+
+  .register-link {
+    border-top-color: #3a3a5c;
+    color: #aaa;
+  }
+
+  .register-link a {
+    color: #8b9eff;
+  }
 }
