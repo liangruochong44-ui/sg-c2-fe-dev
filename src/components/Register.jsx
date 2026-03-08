@@ -14,6 +14,36 @@ function Register() {
   const [errors, setErrors] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
+  // 密码强度计算
+  const calculatePasswordStrength = (password) => {
+    if (!password) return { level: 0, text: '', color: '' }
+    
+    const hasNumber = /\d/.test(password)
+    const hasLetter = /[a-zA-Z]/.test(password)
+    const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password)
+    const length = password.length
+    
+    // 弱：仅数字或仅字母，少于8位
+    if ((hasNumber && !hasLetter && !hasSpecial) || (hasLetter && !hasNumber && !hasSpecial) || length < 8) {
+      return { level: 1, text: '弱', color: '#e74c3c' }
+    }
+    
+    // 强：字母+数字+特殊字符，10位以上
+    if (hasLetter && hasNumber && hasSpecial && length >= 10) {
+      return { level: 3, text: '强', color: '#27ae60' }
+    }
+    
+    // 中：字母+数字，8位以上
+    if (hasLetter && hasNumber && length >= 8) {
+      return { level: 2, text: '中', color: '#f39c12' }
+    }
+    
+    // 默认返回弱
+    return { level: 1, text: '弱', color: '#e74c3c' }
+  }
+  
+  const passwordStrength = calculatePasswordStrength(formData.password)
+
   const validate = () => {
     const newErrors = {}
     
@@ -141,6 +171,22 @@ function Register() {
               placeholder="请输入密码（至少8位）"
               disabled={isLoading}
             />
+            {formData.password && (
+              <div className="password-strength">
+                <div className="strength-bar">
+                  <div 
+                    className={`strength-fill level-${passwordStrength.level}`}
+                    style={{ 
+                      width: passwordStrength.level === 1 ? '33%' : passwordStrength.level === 2 ? '66%' : '100%',
+                      backgroundColor: passwordStrength.color
+                    }}
+                  ></div>
+                </div>
+                <span className="strength-text" style={{ color: passwordStrength.color }}>
+                  强度：{passwordStrength.text}
+                </span>
+              </div>
+            )}
             {errors.password && <span className="error">{errors.password}</span>}
           </div>
           
