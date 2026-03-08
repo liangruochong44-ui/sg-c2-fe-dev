@@ -8,7 +8,8 @@ function Login() {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
-    password: ''
+    password: '',
+    remember: false
   })
   const [errors, setErrors] = useState({})
   const [isLoading, setIsLoading] = useState(false)
@@ -34,8 +35,11 @@ function Login() {
   }
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
+    const { name, value, type, checked } = e.target
+    setFormData(prev => ({ 
+      ...prev, 
+      [name]: type === 'checkbox' ? checked : value 
+    }))
     // 清除对应字段的错误
     if (errors[name]) {
       const newErrors = { ...errors }
@@ -80,9 +84,12 @@ function Login() {
   }
 
   // 存储 Token 到 localStorage
-  const storeToken = (token) => {
+  const storeToken = (token, remember = false) => {
     localStorage.setItem('authToken', token)
-    localStorage.setItem('tokenExpiry', Date.now().toString())
+    const expiryDays = remember ? 30 : 1 // 记住我：30天，否则：1天
+    const expiryMs = expiryDays * 24 * 60 * 60 * 1000
+    localStorage.setItem('tokenExpiry', (Date.now() + expiryMs).toString())
+    localStorage.setItem('rememberMe', remember.toString())
   }
 
   const handleSubmit = async (e) => {
@@ -98,7 +105,10 @@ function Login() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          remember: formData.remember
+        }),
       })
       
       const data = await response.json()
@@ -106,7 +116,7 @@ function Login() {
       if (response.ok) {
         // 存储 Token
         if (data.token) {
-          storeToken(data.token)
+          storeToken(data.token, formData.remember)
         }
         // 存储用户信息
         if (data.user) {
@@ -219,7 +229,12 @@ function Login() {
           
           <div className="form-options">
             <label className="remember-me">
-              <input type="checkbox" />
+              <input 
+                type="checkbox" 
+                name="remember"
+                checked={formData.remember}
+                onChange={handleChange}
+              />
               <span>记住我</span>
             </label>
             <Link to="/forgot-password" className="forgot-password">忘记密码？</Link>
