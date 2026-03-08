@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Login from './components/Login'
+import Dashboard from './components/Dashboard'
 
 // 简单的受保护路由组件
 function ProtectedRoute({ children }) {
@@ -11,26 +12,6 @@ function ProtectedRoute({ children }) {
     return <Navigate to="/" replace />
   }
   return children
-}
-
-// 简单的仪表盘占位组件
-function Dashboard() {
-  const handleLogout = () => {
-    localStorage.removeItem('authToken')
-    localStorage.removeItem('tokenExpiry')
-    localStorage.removeItem('userInfo')
-    window.location.href = '/'
-  }
-  
-  const userInfo = JSON.parse(localStorage.getItem('userInfo') || '{}')
-  
-  return (
-    <div style={{ padding: '20px' }}>
-      <h1>欢迎{userInfo.username ? `，${userInfo.username}` : ''}！</h1>
-      <p>登录成功</p>
-      <button onClick={handleLogout}>退出登录</button>
-    </div>
-  )
 }
 
 function App() {
