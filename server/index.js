@@ -17,11 +17,12 @@ const users = [];
 const invalidatedTokens = new Set();
 
 // Helper functions
-const generateToken = (user) => {
+const generateToken = (user, remember = false) => {
+  const expiresIn = remember ? '7d' : '24h';
   return jwt.sign(
     { id: user.id, username: user.username },
     JWT_SECRET,
-    { expiresIn: '24h' }
+    { expiresIn }
   );
 };
 
@@ -95,7 +96,7 @@ app.post('/api/auth/register', async (req, res) => {
 // User login
 app.post('/api/auth/login', async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, remember = false } = req.body;
 
     if (!username || !password) {
       return res.status(400).json({ error: 'Username and password are required' });
@@ -113,8 +114,8 @@ app.post('/api/auth/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // Generate token
-    const token = generateToken(user);
+    // Generate token with remember option
+    const token = generateToken(user, remember);
 
     res.json({
       message: 'Login successful',
