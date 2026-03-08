@@ -1,7 +1,11 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Login.css'
 
+const API_BASE = import.meta.env.VITE_API_BASE || ''
+
 function Login() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -37,6 +41,20 @@ function Login() {
     }
   }
 
+  // 存储 Token 到 localStorage
+  const storeToken = (token) => {
+    localStorage.setItem('authToken', token)
+    localStorage.setItem('tokenExpiry', Date.now().toString())
+  }
+
+  // 检查 Token 是否有效
+  const isTokenValid = () => {
+    const expiry = localStorage.getItem('tokenExpiry')
+    if (!expiry) return false
+    // Token 24小时内有效
+    return Date.now() - parseInt(expiry) < 24 * 60 * 60 * 1000
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     
@@ -45,8 +63,7 @@ function Login() {
     setIsLoading(true)
     
     try {
-      // 模拟登录 API 调用
-      const response = await fetch('/api/login', {
+      const response = await fetch(`${API_BASE}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,18 +71,27 @@ function Login() {
         body: JSON.stringify(formData),
       })
       
+      const data = await response.json()
+      
       if (response.ok) {
-        const data = await response.json()
+        // 存储 Token
+        if (data.token) {
+          storeToken(data.token)
+        }
+        // 存储用户信息
+        if (data.user) {
+          localStorage.setItem('userInfo', JSON.stringify(data.user))
+        }
         console.log('登录成功:', data)
         alert('登录成功！')
+        // 登录成功后跳转
+        navigate('/dashboard')
       } else {
-        const errorData = await response.json()
-        setErrors({ submit: errorData.message || '登录失败' })
+        setErrors({ submit: data.message || '登录失败，请检查用户名和密码' })
       }
     } catch (error) {
-      // 开发环境模拟成功
-      console.log('开发模式：模拟登录成功')
-      alert('登录成功！（开发模式）')
+      console.error('登录请求失败:', error)
+      setErrors({ submit: '网络错误，请稍后重试' })
     } finally {
       setIsLoading(false)
     }
