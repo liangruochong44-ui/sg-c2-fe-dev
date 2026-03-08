@@ -4,8 +4,9 @@ const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-producti
 const JWT_EXPIRES_IN = '7d';
 
 // 生成 Token
-function generateToken(payload) {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+function generateToken(payload, remember = false) {
+  const expiresIn = remember ? '30d' : '7d';
+  return jwt.sign(payload, JWT_SECRET, { expiresIn });
 }
 
 // 验证 Token

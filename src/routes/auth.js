@@ -49,7 +49,7 @@ router.post('/register', async (req, res) => {
 // POST /api/auth/login - 用户登录
 router.post('/login', async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, remember } = req.body;
     
     if (!username || !password) {
       return res.status(400).json({ error: '请输入用户名和密码' });
@@ -67,8 +67,8 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: '用户名或密码错误' });
     }
     
-    // 生成 Token
-    const token = generateToken({ id: user.id, username: user.username });
+    // 生成 Token (如果记住我，则 30 天过期，否则 7 天)
+    const token = generateToken({ id: user.id, username: user.username }, remember);
     
     res.json({
       message: '登录成功',
