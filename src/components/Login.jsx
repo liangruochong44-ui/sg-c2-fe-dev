@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import './Login.css'
 
 const API_BASE = import.meta.env.VITE_API_BASE || ''
@@ -136,6 +136,10 @@ function Login() {
             {isLoading ? '登录中...' : '登录'}
           </button>
         </form>
+        
+        <div className="register-link">
+          还没有账号？<Link to="/register">立即注册</Link>
+        </div>
       </div>
     </div>
   )
